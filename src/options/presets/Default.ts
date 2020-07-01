@@ -24,6 +24,7 @@ export const DEFAULT_PRESET: TInputOptions = Object.freeze({
     renameGlobals: false,
     renameProperties: false,
     reservedNames: [],
+    exactReservedNames: [],
     reservedStrings: [],
     rotateStringArray: true,
     seed: 0,

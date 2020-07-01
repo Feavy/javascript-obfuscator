@@ -28,10 +28,10 @@ export class RenamePropertiesReplacer implements IRenamePropertiesReplacer {
      */
     private readonly propertyNamesMap: Map<string, string> = new Map();
 
-    /**
-     * @type {IOptions}
-     */
-    private readonly options: IOptions;
+    // /**
+    //  * @type {IOptions}
+    //  */
+    // private readonly options: IOptions;
 
     /**
      * Properties list taken from `UglifyJS` and `terser`
@@ -54,7 +54,7 @@ export class RenamePropertiesReplacer implements IRenamePropertiesReplacer {
         @inject(ServiceIdentifiers.IOptions) options: IOptions
     ) {
         this.identifierNamesGenerator = identifierNamesGeneratorFactory(options);
-        this.options = options;
+        // this.options = options;
     }
 
     /**
@@ -113,14 +113,7 @@ export class RenamePropertiesReplacer implements IRenamePropertiesReplacer {
      * @returns {boolean}
      */
     private isReservedOptionName (name: string): boolean {
-        if (!this.options.reservedNames.length) {
-            return false;
-        }
-
-        return this.options.reservedNames
-            .some((reservedName: string) => {
-                return new RegExp(reservedName, 'g').exec(name) !== null;
-            });
+        return !this.identifierNamesGenerator.isValidIdentifierName(name);
     }
 
     /**

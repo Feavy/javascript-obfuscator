@@ -24,6 +24,7 @@ export interface IOptions {
     readonly renameGlobals: boolean;
     readonly renameProperties: boolean;
     readonly reservedNames: string[];
+    readonly exactReservedNames: string[];
     readonly reservedStrings: string[];
     readonly rotateStringArray: boolean;
     readonly seed: string | number;

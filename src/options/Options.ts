@@ -180,6 +180,16 @@ export class Options implements IOptions {
     @IsString({
         each: true
     })
+    public readonly exactReservedNames!: string[];
+
+    /**
+     * @type {string[]}
+     */
+    @IsArray()
+    @ArrayUnique()
+    @IsString({
+        each: true
+    })
     public readonly reservedStrings!: string[];
 
     /**

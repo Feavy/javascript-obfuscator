@@ -3,6 +3,7 @@
   Description: A powerful obfuscator for JavaScript and Node.js.
   Author: Timofey Kachalov
   -->
+**Added option `exactReservedNames` which verifies that a variable name does not match with any value contained in this array (this doesn't use regex so it's better in performance).**
 
 # JavaScript obfuscator
 
