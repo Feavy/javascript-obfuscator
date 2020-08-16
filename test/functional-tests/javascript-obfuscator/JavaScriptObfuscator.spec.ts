@@ -682,6 +682,32 @@ describe('JavaScriptObfuscator', () => {
             });
         });
 
+        describe('Optional chaining support', () => {
+            const regExp: RegExp = new RegExp(
+                'const _0x(\\w){4,6} *= *{ *' +
+                    '\'bar\': *\\(\\) *=> *{} *' +
+                '}; *' +
+                '_0x(\\w){4,6}\\?\\.\\[\'bar\']\\?\\.\\(\\);'
+            );
+
+            let obfuscatedCode: string;
+
+            beforeEach(() => {
+                const code: string = readFileAsString(__dirname + '/fixtures/optional-chaining-support.js');
+
+                obfuscatedCode = JavaScriptObfuscator.obfuscate(
+                    code,
+                    {
+                        ...NO_ADDITIONAL_NODES_PRESET
+                    }
+                ).getObfuscatedCode();
+            });
+
+            it('should support optional chaining', () => {
+                assert.match(obfuscatedCode, regExp);
+            });
+        });
+
         describe('mangled identifier names generator', () => {
             const regExp: RegExp = /var c *= *0x1/;
 
@@ -694,6 +720,27 @@ describe('JavaScriptObfuscator', () => {
                     code,
                     {
                         identifierNamesGenerator: IdentifierNamesGenerator.MangledIdentifierNamesGenerator
+                    }
+                ).getObfuscatedCode();
+            });
+
+            it('should mangle obfuscated code', () => {
+                assert.match(obfuscatedCode, regExp);
+            });
+        });
+
+        describe('mangled shuffled identifier names generator', () => {
+            const regExp: RegExp = /var [a-zA-Z] *= *0x1/;
+
+            let obfuscatedCode: string;
+
+            beforeEach(() => {
+                const code: string = readFileAsString(__dirname + '/fixtures/mangle.js');
+
+                obfuscatedCode = JavaScriptObfuscator.obfuscate(
+                    code,
+                    {
+                        identifierNamesGenerator: IdentifierNamesGenerator.MangledShuffledIdentifierNamesGenerator
                     }
                 ).getObfuscatedCode();
             });
@@ -789,6 +836,9 @@ describe('JavaScriptObfuscator', () => {
                         deadCodeInjection: true,
                         deadCodeInjectionThreshold: 1,
                         disableConsoleOutput: false,
+                        numbersToExpressions: true,
+                        simplify: true,
+                        renameProperties: true,
                         rotateStringArray: true,
                         stringArray: true,
                         stringArrayEncoding: StringArrayEncoding.Rc4,

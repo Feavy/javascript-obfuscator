@@ -21,6 +21,7 @@ export interface IOptions {
     readonly identifiersPrefix: string;
     readonly inputFileName: string;
     readonly log: boolean;
+    readonly numbersToExpressions: boolean;
     readonly renameGlobals: boolean;
     readonly renameProperties: boolean;
     readonly reservedNames: string[];
@@ -30,6 +31,7 @@ export interface IOptions {
     readonly seed: string | number;
     readonly selfDefending: boolean;
     readonly shuffleStringArray: boolean;
+    readonly simplify: boolean;
     readonly sourceMap: boolean;
     readonly sourceMapBaseUrl: string;
     readonly sourceMapFileName: string;

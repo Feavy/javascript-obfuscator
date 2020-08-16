@@ -117,7 +117,8 @@ export class Options implements IOptions {
     @IsIn([
         IdentifierNamesGenerator.DictionaryIdentifierNamesGenerator,
         IdentifierNamesGenerator.HexadecimalIdentifierNamesGenerator,
-        IdentifierNamesGenerator.MangledIdentifierNamesGenerator
+        IdentifierNamesGenerator.MangledIdentifierNamesGenerator,
+        IdentifierNamesGenerator.MangledShuffledIdentifierNamesGenerator
     ])
     public readonly identifierNamesGenerator!: TypeFromEnum<typeof IdentifierNamesGenerator>;
 
@@ -149,6 +150,12 @@ export class Options implements IOptions {
      */
     @IsBoolean()
     public readonly log!: boolean;
+
+    /**
+     * @type {boolean}
+     */
+    @IsBoolean()
+    public readonly numbersToExpressions!: boolean;
 
     /**
      * @type {boolean}
@@ -209,6 +216,12 @@ export class Options implements IOptions {
      */
     @IsBoolean()
     public readonly shuffleStringArray!: boolean;
+
+    /**
+     * @type {boolean}
+     */
+    @IsBoolean()
+    public readonly simplify!: boolean;
 
     /**
      * @type {boolean}

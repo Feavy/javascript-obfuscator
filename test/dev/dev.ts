@@ -7,14 +7,17 @@ import { NO_ADDITIONAL_NODES_PRESET } from '../../src/options/presets/NoCustomNo
 
     let obfuscatedCode: string = JavaScriptObfuscator.obfuscate(
         `
-            class Foo {
-                [(1, Symbol.asyncIterator)]() {}
-            }
+            const foo = {
+                bar: {
+                    baz: 1
+                }
+            };
+            
+            console.log(foo.bar.baz);
         `,
         {
             ...NO_ADDITIONAL_NODES_PRESET,
-            compact: false,
-            renameProperties: true
+            compact: false
         }
     ).getObfuscatedCode();
 
